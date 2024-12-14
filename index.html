@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversion Tool</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .dropdown,
+      .input-section {
+        margin-bottom: 20px;
+      }
+
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Conversion Tool</h1>
+      <div class="dropdown">
+        <label for="conversion-type">Choose a conversion:</label>
+        <select id="conversion-type">
+          <option value="ftoc">Fahrenheit to Celsius</option>
+          <option value="mtokm">Meters to Kilometers</option>
+        </select>
+      </div>
+      <div class="input-section">
+        <input type="number" id="input-value" placeholder="Enter value" />
+        <button id="convert-btn">Convert</button>
+      </div>
+      <div class="result">
+        <p id="result-output"></p>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("convert-btn")
+        .addEventListener("click", function () {
+          const conversionType =
+            document.getElementById("conversion-type").value;
+          const inputValue = parseFloat(
+            document.getElementById("input-value").value
+          );
+          let result;
+
+          if (isNaN(inputValue)) {
+            result = "Please enter a valid number";
+          } else {
+            if (conversionType === "ftoc") {
+              // Fahrenheit to Celsius
+              result = (((inputValue - 32) * 5) / 9).toFixed(2) + " °C";
+            } else if (conversionType === "mtokm") {
+              // Meters to Kilometers
+              result = (inputValue / 1000).toFixed(2) + " km";
+            }
+          }
+
+          document.getElementById("result-output").textContent = result;
+        });
+    </script>
+  </body>
+</html>
